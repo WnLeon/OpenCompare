@@ -16,6 +16,30 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
+  {
+    path: "/database",
+    name: "database",
+    component: () =>
+      import(/* webpackChunkName: "database" */ "../views/DatabaseView.vue"),
+  },
+  {
+    path: "/files",
+    name: "files",
+    component: () =>
+      import(/* webpackChunkName: "files" */ "../views/FilesView.vue"),
+  },
+  {
+    path: "/object",
+    name: "object",
+    component: () =>
+      import(/* webpackChunkName: "object" */ "../views/ObjectStorageView.vue"),
+  },
+  {
+    path: "/images",
+    name: "images",
+    component: () =>
+      import(/* webpackChunkName: "object" */ "../views/MultiPagesImages.vue"),
+  },
 ];
 
 const router = createRouter({
