@@ -38,7 +38,13 @@ const routes = [
     path: "/images",
     name: "images",
     component: () =>
-      import(/* webpackChunkName: "object" */ "../views/MultiPagesImages.vue"),
+      import(/* webpackChunkName: "object" */ "../views/MultiImages.vue"),
+  },
+  {
+    path: "/imageswiper",
+    name: "imageswiper",
+    component: () =>
+      import(/* webpackChunkName: "object" */ "../views/ImagesSwiper.vue"),
   },
 ];
 

@@ -5,11 +5,11 @@
     <router-link to="/files">Files</router-link> |
     <router-link to="/object">ObjectBasedStorage</router-link> |
     <router-link to="/images">Images</router-link> |
+    <!--    <router-link to="/imageswiper">ImageSwiper</router-link> |-->
     <router-link to="/about">About</router-link>
   </nav>
   <router-view />
 </template>
-
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
