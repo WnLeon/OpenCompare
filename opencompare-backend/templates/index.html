@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+网关：Ngnix
+
+前端：vue.js
+
+后端：Flask，gevent.pyuwsgi，requests
+
+存储：MySQL、本地文件
+
+分析：Pandas、Seaborn、Jupyter notebook
+
+模型：Tensorflow
+
+
+
+python -m pip install virtualenv -i http://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com
+
+mkdir opencompare && cd opencompare
+
+virtualenv opencompare-venv --python=python.exe
+python -m venv opencompare-venv
+
+cat opencompare-venv >> .gitignore
+
+source venv/bin/activete
+.\venv\Scripts\activate.ps1
+.\venv\Scripts\activate.bat
+
+deactivate
+pip freeze > requirements.txt
+
+
+vue create/ui
+
+vue create opencompare-vue-ui
+
+npm run serve
+
+
+npm run lint src/views/Muti-pagesImages.vue --fix
+
+</body>
+</html>
