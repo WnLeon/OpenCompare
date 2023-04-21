@@ -1,39 +1,32 @@
 <template>
   <div>
     <div class="container">
-      <vf-layout justify="space-between">
-        <div>
-          <vf-layout-item>
-            <img
-              v-for="(image, index) in paginatedImages1"
-              :key="index"
-              :src="image"
-            />
-          </vf-layout-item>
-          <vf-layout-item>
-            <img
-              v-for="(image, index) in paginatedImages2"
-              :key="index"
-              :src="image"
-            />
-          </vf-layout-item>
-          <vf-layout-item>
-            <img
-              v-for="(image, index) in paginatedImages3"
-              :key="index"
-              :src="image"
-            />
-          </vf-layout-item>
-        </div>
+      <vf-layout class="image-row" justify="space-around">
+        <img
+          v-for="(image, index) in paginatedImages1"
+          :key="index"
+          :src="image"
+          style="object-fit: cover"
+        />
+      </vf-layout>
+      <vf-layout class="image-row" justify="space-around">
+        <img
+          v-for="(image, index) in paginatedImages2"
+          :key="index"
+          :src="image"
+          style="object-fit: cover"
+        />
+      </vf-layout>
+      <vf-layout class="image-row" justify="space-around">
+        <img
+          v-for="(image, index) in paginatedImages3"
+          :key="index"
+          :src="image"
+          style="object-fit: cover"
+        />
       </vf-layout>
     </div>
-    <nav class="pagination-container">
-      <label for="images-per-page">/Page</label>
-      <select id="images-per-page" v-model="imagesPerPage">
-        <option value="12">12</option>
-        <option value="21">21</option>
-        <option value="45">45</option>
-      </select>
+    <div class="page">
       <v-paginate
         :pageCount="pageCount"
         :click-handler="changePage"
@@ -49,10 +42,12 @@
         prev-link-class="page-link"
         next-class="page-item"
         next-link-class="page-link"
-        page-range="3"
-      >
-      </v-paginate>
-    </nav>
+        page-range="5"
+      />
+      <span>Page</span>
+      <input type="number" name="page" v-model="inputValue" />
+      <button @click="updateValue">GO</button>
+    </div>
   </div>
 </template>
 
@@ -68,7 +63,7 @@ export default {
     return {
       images: [],
       currentPage: 1,
-      imagesPerPage: 12,
+      imagesPerPage: 9,
     };
   },
   computed: {
@@ -81,34 +76,28 @@ export default {
       const startIndex = (this.currentPage - 1) * this.imagesPerPage;
       // const endIndex = startIndex + this.imagesPerPage;
       return this.images.slice(
-        startIndex + this.imagesPerPage / 3 + 1,
-        startIndex + this.imagesPerPage / 3 + 1 + this.imagesPerPage / 3
+        startIndex + this.imagesPerPage / 3,
+        startIndex + this.imagesPerPage / 3 + this.imagesPerPage / 3
       );
     },
     paginatedImages3() {
       const startIndex = (this.currentPage - 1) * this.imagesPerPage;
       const endIndex = startIndex + this.imagesPerPage;
       return this.images.slice(
-        startIndex + this.imagesPerPage / 3 + 1 + this.imagesPerPage / 3 + 1,
+        startIndex + this.imagesPerPage / 3 + this.imagesPerPage / 3,
         endIndex
       );
     },
     pageCount() {
       return Math.ceil(this.images.length / this.imagesPerPage);
     },
-    pageRow() {
-      return Math.ceil(this.images.imagesPerPage / 5);
-    },
-    perRowImages() {
-      const startIndex = (this.currentPage - 1) * this.imagesPerPage;
-      const startIndex_1 = startIndex + this.imagesPerPage;
-      const endIndex_1 = startIndex_1 + this.pageRow;
-      return this.images.slice(startIndex_1, endIndex_1);
-    },
   },
   methods: {
     changePage(pageIndex) {
       this.currentPage = pageIndex;
+    },
+    updateValue() {
+      this.currentPage = this.inputValue;
     },
     async fetchImages() {
       try {
@@ -135,32 +124,63 @@ export default {
 /* Adopt bootstrap pagination stylesheet. */
 @import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css";
 
-/* Write your own CSS for pagination */
-.pagination {
+.container {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  max-width: 3840px;
+  max-height: 2160px;
 }
-.page-item {
+
+.page {
+  display: inline-flex;
+  text-align: center;
+  width: 100%;
+  bottom: 0;
+  height: 38px;
+  padding: 10px 30%;
+  color: black;
 }
-.pagination-container {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  font-size: 16px;
+.page a,
+.page button,
+.page a:visited,
+.page b,
+.page > input {
+  background: #fff;
+  padding: 0 16px;
+  border: 1px solid #ddd;
+  display: inline-block;
+  height: 36px;
+  line-height: 36px;
+  margin: 0 4px 0 5px;
+  font-size: 14px;
+  border-radius: 3px;
+}
+.page > input {
+  width: 40px;
+  padding: 0 5px;
+  text-align: center;
+  margin: 0;
+}
+/* .page a:hover, */
+.page b {
+  background: #63b504;
+  border: 1px solid #63b504;
+  color: #fff;
+  text-decoration: none;
+}
+.page span {
+  padding: 5px 10px;
 }
 
 .image-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-bottom: 20px;
 }
 
 .image-row img {
-  width: calc(33.33% - 10px);
+  width: calc(33.33% - 20px);
   height: auto;
-}
-
-.container {
-  width: 100%;
-  max-width: 1500px;
-  margin: 10px auto;
 }
 </style>
