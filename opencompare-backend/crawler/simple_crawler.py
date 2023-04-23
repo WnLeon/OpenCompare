@@ -47,11 +47,13 @@ def fetchImageByPage(page):
     url = "https://pic.netbian.com"
     if page == 1:
         meinvurl = url + "/4kmeinv/index.html"
+        dongwuurl = url + "/4kdongwu/index.html"
     else:
         meinvurl = url + "/4kmeinv/index_" + str(page) + ".html"
+        dongwuurl = url + "/4kdongwu/index_" + str(page) + ".html"
 
     # 1.获取html源码
-    requesturl = urllib.request.urlopen(meinvurl)
+    requesturl = urllib.request.urlopen(dongwuurl)
     requesthtml = requesturl.read().decode('gbk')
     # 2.通过正则表达式获取image的url
     reg = r'src="(.+?\.jpg)" alt='
@@ -73,7 +75,6 @@ def fetchImageByPage(page):
         insertDB(x, imgurl.split('/')[-1], 'http://localhost:5000/static/images/simple_crawler/bian/' + '{}.jpg'.format(x))
         print("image saved path: " + localpath)
         x = x + 1
-    # 6.保存图片路径到数据库
 
 
 
