@@ -1,56 +1,53 @@
 <template>
-  <div>
-    <div class="container">
-      <vf-layout class="image-row" justify="space-around">
-        <img
-          v-for="(image, index) in paginatedImages1"
-          :key="index"
-          :src="image"
-          style="object-fit: cover"
-        />
-      </vf-layout>
-      <vf-layout class="image-row" justify="space-around">
-        <img
-          v-for="(image, index) in paginatedImages2"
-          :key="index"
-          :src="image"
-          style="object-fit: cover"
-        />
-      </vf-layout>
-      <vf-layout class="image-row" justify="space-around">
-        <img
-          v-for="(image, index) in paginatedImages3"
-          :key="index"
-          :src="image"
-          style="object-fit: cover"
-        />
-      </vf-layout>
-    </div>
-    <div class="page">
-      <v-paginate
-        :pageCount="pageCount"
-        :click-handler="changePage"
-        first-button-text="First"
-        last-button-text="Last"
-        prev-text="Prev"
-        next-text="Next"
-        first-last-button="True"
-        container-class="pagination"
-        page-class="page-item"
-        page-link-class="page-link"
-        prev-class="page-item"
-        prev-link-class="page-link"
-        next-class="page-item"
-        next-link-class="page-link"
-        page-range="5"
+  <div class="container">
+    <vf-layout class="image-row" justify="space-around">
+      <img
+        v-for="(image, index) in paginatedImages1"
+        :key="index"
+        :src="image"
+        style="object-fit: cover"
       />
-      <span>Page</span>
-      <input type="number" name="page" v-model="inputValue" />
-      <button @click="updateValue">GO</button>
-    </div>
+    </vf-layout>
+    <vf-layout class="image-row" justify="space-around">
+      <img
+        v-for="(image, index) in paginatedImages2"
+        :key="index"
+        :src="image"
+        style="object-fit: cover"
+      />
+    </vf-layout>
+    <vf-layout class="image-row" justify="space-around">
+      <img
+        v-for="(image, index) in paginatedImages3"
+        :key="index"
+        :src="image"
+        style="object-fit: cover"
+      />
+    </vf-layout>
+  </div>
+  <div class="page">
+    <v-paginate
+      :pageCount="pageCount"
+      :click-handler="changePage"
+      first-button-text="First"
+      last-button-text="Last"
+      prev-text="Prev"
+      next-text="Next"
+      first-last-button="True"
+      container-class="pagination"
+      page-class="page-item"
+      page-link-class="page-link"
+      prev-class="page-item"
+      prev-link-class="page-link"
+      next-class="page-item"
+      next-link-class="page-link"
+      page-range="3"
+    />
+    <span>Page</span>
+    <input type="number" name="page" v-model="inputValue" />
+    <button @click="updateValue">GO</button>
   </div>
 </template>
-
 <script>
 import axios from "axios";
 import vPaginate from "vuejs-paginate-next";
@@ -125,20 +122,17 @@ export default {
 @import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css";
 
 .container {
+  text-align: center;
   position: relative;
-  width: 80%;
-  height: 80%;
-  max-width: 3840px;
-  max-height: 2160px;
+  max-width: 1200px;
+  height: 100%;
 }
 
 .page {
   display: inline-flex;
   text-align: center;
-  width: 100%;
-  bottom: 0;
   height: 38px;
-  padding: 10px 30%;
+  padding: 10px 0 20px;
   color: black;
 }
 .page a,
@@ -170,13 +164,14 @@ export default {
   text-decoration: none;
 }
 .page span {
-  padding: 5px 10px;
+  padding: 0 10px;
 }
 
 .image-row {
+  width: 1200px;
   display: flex;
   justify-content: space-around;
-  margin-bottom: 20px;
+  margin: 10px 0;
 }
 
 .image-row img {

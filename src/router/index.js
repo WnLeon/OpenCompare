@@ -41,10 +41,10 @@ const routes = [
       import(/* webpackChunkName: "object" */ "../views/MultiImages.vue"),
   },
   {
-    path: "/imageswiper",
-    name: "imageswiper",
+    path: "/login",
+    name: "login",
     component: () =>
-      import(/* webpackChunkName: "object" */ "../views/ImagesSwiper.vue"),
+      import(/* webpackChunkName: "object" */ "../components/Login.vue"),
   },
 ];
 
