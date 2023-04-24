@@ -38,7 +38,41 @@ const routes = [
     path: "/images",
     name: "images",
     component: () =>
-      import(/* webpackChunkName: "object" */ "../views/MultiImages.vue"),
+      import(/* webpackChunkName: "object" */ "../views/Gallery/myBeauty.vue"),
+  },
+  {
+    path: "/images/beauty",
+    name: "beauty",
+    component: () =>
+      import(/* webpackChunkName: "object" */ "../views/Gallery/myBeauty.vue"),
+  },
+  {
+    path: "/images/animal",
+    name: "animal",
+    component: () =>
+      import(/* webpackChunkName: "object" */ "../views/Gallery/myAnimal.vue"),
+  },
+  {
+    path: "/images/scenery",
+    name: "scenery",
+    component: () =>
+      import(/* webpackChunkName: "object" */ "../views/Gallery/myScenery.vue"),
+  },
+  {
+    path: "/images/laughing",
+    name: "laughing",
+    component: () =>
+      import(
+        /* webpackChunkName: "object" */ "../views/Gallery/myLaughing.vue"
+      ),
+  },
+  {
+    path: "/images/innovation",
+    name: "innovation",
+    component: () =>
+      import(
+        /* webpackChunkName: "object" */ "../views/Gallery/myInnovation.vue"
+      ),
   },
   {
     path: "/login",

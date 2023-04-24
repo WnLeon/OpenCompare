@@ -51,8 +51,12 @@
 <script>
 import axios from "axios";
 import vPaginate from "vuejs-paginate-next";
+// const imagesapi = "/api/imagesmeinv";
 
 export default {
+  props: {
+    imagesapi: String,
+  },
   components: {
     vPaginate,
   },
@@ -64,6 +68,9 @@ export default {
     };
   },
   computed: {
+    getimagesapi() {
+      return `${this.imagesapi}`;
+    },
     paginatedImages1() {
       const startIndex = (this.currentPage - 1) * this.imagesPerPage;
       // const endIndex = startIndex + this.imagesPerPage;
@@ -98,7 +105,7 @@ export default {
     },
     async fetchImages() {
       try {
-        const response = await axios.get("/api/images");
+        const response = await axios.get(this.getimagesapi);
         this.images = response.data.images;
       } catch (error) {
         console.log(error);
