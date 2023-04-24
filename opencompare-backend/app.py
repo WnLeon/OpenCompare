@@ -6,31 +6,28 @@
 @Date  : 2023/4/6 15:59
 @Desc  : 
 '''
-from flask import Flask, jsonify, request, send_file
+from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
-
+from conf import dbconf
+from module.storage.db import opencompare
+from module.dbs import db
+from module.images_display.imagesdisplay import gallery
 
 app = Flask(__name__)
-app.config['JSON_AS_ASCII'] = False  # 禁止中文转义
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://opencompare:www.51idc.COM@43.254.55.108:9606/opencompare'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+app.register_blueprint(gallery)
 
-db = SQLAlchemy(app)
-class Image(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(255), nullable=False)
-    url = db.Column(db.String(255), nullable=False)
+app.config.from_object(dbconf)
+db.init_app(app)
 
-
-@app.route('/images')
-def get_images():
-    # Query the database to get the image URLs
-    images = Image.query.all()
-    # urls = [{image.title: image.url} for image in images]
-    urls = [image.url for image in images]
-    # Return the image URLs as a JSON response
-    return jsonify({'images': urls})
-    #return jsonify({'images': urls})
+# @app.route('/images')
+# def get_images():
+#     # Query the database to get the image URLs
+#     images = opencompare.Image.query.all()
+#     # urls = [{image.title: image.url} for image in images]
+#     urls = [image.url for image in images]
+#     # Return the image URLs as a JSON response
+#     return jsonify({'images': urls})
+#     #return jsonify({'images': urls})
 
 
 @app.route("/user/login", methods=["POST"])
